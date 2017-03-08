@@ -23,8 +23,9 @@ $losetup /dev/loop2 disk1.img
 ```
 
 ### RAID level 0 – Striping
-  ![image](http://www.prepressure.com/images/raid-level-0-striping.svg)
-  Raid 0 将数据进行条带化，同时向多个磁盘(至少2个)写数据.不做数据冗余，理想的情况，每个磁盘使用单独的控制器管理。
+![image](http://www.prepressure.com/images/raid-level-0-striping.svg)
+
+Raid 0 将数据进行条带化，同时向多个磁盘(至少2个)写数据.不做数据冗余，理想的情况，每个磁盘使用单独的控制器管理。
   
 #### 优点
 * 读写性能好，没有数据冗余。
@@ -86,6 +87,7 @@ $dmsetup status test-raid0
 
 ### RAID level 1 – Mirroring
 ![image](http://www.prepressure.com/images/raid-level-1-mirroring.svg)
+
 RAID 1 数据存储两次，如果一个drive挂了，控制器会使用另外一个drive或者直接拷贝另一个drive的数据给它。
 
 RAID 1的优缺点很明显，值得一提的的是，它不能保证热交换磁盘，也就是说，当一块盘坏了之后，需要将计算机停机，然后才能更换磁盘。
@@ -108,6 +110,7 @@ $dmsetup status test-raid1
 
 ### RAID level 5
 最为普遍的RAID方式。要求至少3个drive，其中一个drive的一个磁盘作为奇偶校验盘，其他块做striping。所有奇偶校验盘会广泛分布在所有drive上。当有某个盘挂掉后，可以利用其他块以及奇偶校验盘来恢复数据，但如果同一个块中有两个设备挂掉，那么整个RAID就挂了。也就是说，RAID5能够支持单drive失败。
+
 ![image](http://www.prepressure.com/images/raid-level-5-striping-with-parity.svg)
 
 RAID5的优点是兼顾了读写性能和安全性，能够支持单drive的失败情况。缺点在于实现比较复杂，恢复数据比较慢，如果在恢复的过程中其他drive也发生故障，那么整个RAID就挂了。
@@ -172,11 +175,13 @@ $dmsetup status test-raid5
 
 ### RAID level 6 – Striping with double parity
 ![image](http://www.prepressure.com/images/raid-level-6-striping-with-dual-parity.svg)
+
 RAID6改进了RAID5，使用了两块奇偶校验盘，
 RAID6的创建过程和RAID5相似.
 
 ### RAID level 10 – combining RAID 1 & RAID 0
 RAID10可以看做是RAID1和RAID0的结合。
+
 ![image](http://www.prepressure.com/images/raid-level-1-and-0-striping-mirroring.svg)
 
 RAID10的优点在于恢复数据速度很快，但相比与RAID5和6，使用设备的代价更大。
