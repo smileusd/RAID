@@ -1,5 +1,5 @@
 # RAID
-RAID是用于增加数据存储的性能和可靠性的技术。全程为Redundant Array of Inexpensive Disks（廉价磁盘冗余阵列）
+RAID是用于增加数据存储的性能和可靠性的技术。全称为Redundant Array of Inexpensive Disks（廉价磁盘冗余阵列）
 
 * RAID 0 - strping
 * RAID 1 - mirroring
